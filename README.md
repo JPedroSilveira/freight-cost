@@ -28,3 +28,11 @@ yarn install
 yarn start
 ### Visite o app
 localhost:3000
+
+## Testes
+### Executar todos os testes
+yarn test
+### Executar testes de um arquivo
+yarn test <Nome do arquivo sem extensão>
+### Executar testes com cobertura
+yarn test --coverage --watchAll
