@@ -1,16 +1,15 @@
-import Superagent from 'superagent'
+import FileUtils from "../utils/FileUtils"
+
+const DISTANCE_FILE = '/data/distance.csv'
 
 class LoadDataService {
+    /**
+     * Realiza a leitura do arquivo CSV e retorna seu conteúdo
+     * @returns string o conteúdo do CSV ou undefined
+     */
     loadDistances = async () => {
-        return this.getDistancesCSV()
-    }
-
-    private getDistancesCSV = async() => {
-        try {
-            const response = await Superagent.get('/data/distances.csv')
-            return response.text
-        } catch(e) {}
+        return FileUtils.readTextFile(DISTANCE_FILE)
     }
 }
 
-export default new LoadDataService()
+export default LoadDataService
