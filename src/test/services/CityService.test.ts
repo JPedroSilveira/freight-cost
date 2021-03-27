@@ -40,6 +40,26 @@ test('saveAll with zero values', async () => {
     expect(cities.length).toBe(0)
 })
 
+test('saveAll update entities ids', async () => {
+    const entities: City[] = [
+        {
+            name: 'teste 1'
+        },
+        {
+            name: 'teste 2'
+        },
+        {
+            name: 'teste 3'
+        }
+    ]
+
+    await CityService.saveAll(entities)
+
+    expect(entities[0].id).not.toBe(undefined)
+    expect(entities[1].id).not.toBe(undefined)
+    expect(entities[2].id).not.toBe(undefined)
+})
+
 test('getAll with three values', async () => {
     const entities: City[] = [
         {
