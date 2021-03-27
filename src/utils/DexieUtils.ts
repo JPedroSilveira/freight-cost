@@ -35,6 +35,15 @@ class DexieUtils {
     deleteAll = async <ENTITY, PK> (table: Dexie.Table<ENTITY,PK>) => {
         return table.clear()
     }
+
+    /**
+     * Salva uma entidade, se tiver chave primária tenta atualizar
+     * @param table Tabela da entidade 
+    */
+    saveWithId = async <ENTITY extends IDTable<PK>, PK> (table: Dexie.Table<ENTITY,PK>, entity: ENTITY) => {
+        const id = await table.put(entity)
+        entity.id = id
+    }
 }
 
 export default new DexieUtils()

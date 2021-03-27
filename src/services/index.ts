@@ -3,6 +3,7 @@ import LoadDataServiceImpl from "./LoadDataService"
 import SaveDataServiceImpl from "./SaveDataService"
 import CityServiceImpl from "./CityService"
 import DistanceServiceImpl from './DistanceService'
+import CostServiceImpl from './CostService'
 
 const LoadDataService = new LoadDataServiceImpl()
 
@@ -19,3 +20,7 @@ export { CityService }
 const DistanceService = new DistanceServiceImpl(Database.distance)
 
 export { DistanceService }
+
+const CostService = new CostServiceImpl(Database.cost)
+
+export { CostService }
