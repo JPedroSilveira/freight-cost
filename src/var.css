@@ -1,0 +1,13 @@
+:root {
+	--color-one: #EEEDE7;
+	--color-two: #868B8E;
+	--color-three: #B9B7BD;
+    --color-four: #E7D2CC;
+
+	--content-width: 60vw;
+	--header-height: 10vh;
+}
+
+[data-device='mobile'] {
+	--content-width: 100vw;
+}
