@@ -2,6 +2,7 @@ import { CityService, DistanceService, PathService, CostService } from '../../se
 import Distance from '../../types/Distance'
 import City from '../../types/City'
 import Cost from '../../types/Cost'
+import CostConstants from '../../constants/CostConstants'
 
 jest.mock("../../storage/Database.ts")
 
@@ -27,19 +28,19 @@ test('calc distance between two cities', async () => {
         {
             originId: cities[1].id!,
             destinyId: cities[0].id!,
-            valueInKm: 100
+            value: 100
         },
         {
             originId: cities[0].id!,
             destinyId: cities[1].id!,
-            valueInKm: 150
+            value: 150
         }
     ]
 
     await DistanceService.saveAll(distances)
 
     const cost: Cost = {
-         valueInRS: 100
+         value: 100
     }
 
     await CostService.save(cost)
@@ -49,10 +50,9 @@ test('calc distance between two cities', async () => {
     expect(result).not.toBe(undefined)
     expect(result!.originCity).toBe(cities[0].name)
     expect(result!.destinyCity).toBe(cities[1].name)
-    expect(result!.distanceInKM).toBe(distances[1].valueInKm)
-    expect(result!.totalCost).toBe(distances[1].valueInKm * cost.valueInRS)
+    expect(result!.distanceInKM).toBe(distances[1].value)
+    expect(result!.cost).toBe(distances[1].value * cost.value)
 })
-
 
 test('calc distance between invalid cities', async () => {
     const cities: City[] = [
@@ -65,7 +65,7 @@ test('calc distance between invalid cities', async () => {
     ]
 
     const cost: Cost = {
-         valueInRS: 100
+         value: 100
     }
 
     await CostService.save(cost)
@@ -88,7 +88,7 @@ test('calc distance between cities with invalid ids', async () => {
     ]
 
     const cost: Cost = {
-         valueInRS: 100
+         value: 100
     }
 
     await CostService.save(cost)
@@ -110,7 +110,7 @@ test('calc distance between cities with one invalid city', async () => {
     await CityService.saveAll([validCity])
 
     const cost: Cost = {
-         valueInRS: 100
+         value: 100
     }
 
     await CostService.save(cost)
@@ -122,4 +122,165 @@ test('calc distance between cities with one invalid city', async () => {
     const result2 = await PathService.calcShortPath(invalidCity, validCity, cost)
     
     expect(result2).toBe(undefined)
+})
+
+test('calc distance between three cities', async () => {
+    const cities: City[] = [
+        {
+            name: 'city 1'
+        },
+        {
+            name: 'city 2'
+        },
+        {
+            name: 'city 3'
+        }
+    ]
+
+    await CityService.saveAll(cities)
+    
+    const distances: Distance[] = [
+        {
+            originId: cities[0].id!,
+            destinyId: cities[1].id!,
+            value: 100
+        },
+        {
+            originId: cities[1].id!,
+            destinyId: cities[2].id!,
+            value: 150
+        }
+    ]
+
+    await DistanceService.saveAll(distances)
+
+    const cost: Cost = {
+         value: 100
+    }
+
+    await CostService.save(cost)
+
+    const result = await PathService.calcPath(cities, cost)
+
+    expect(result).not.toBe(undefined)
+
+    expect(result!.shortPaths[0].originCity).toBe(cities[0].name)
+    expect(result!.shortPaths[0].destinyCity).toBe(cities[1].name)
+
+    expect(result!.shortPaths[1].originCity).toBe(cities[1].name)
+    expect(result!.shortPaths[1].destinyCity).toBe(cities[2].name)
+
+    const totalDistance = distances.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)
+    expect(result!.totalCost).toBe(totalDistance * cost.value)
+    expect(result!.totalDistance).toBe(totalDistance)
+    expect(result!.totalDays).toBe(Math.round(totalDistance / CostConstants.KM_PER_DAY))
+    expect(result!.totalFuel).toBe(totalDistance * CostConstants.FUEL_PER_KM)
+})
+
+test('calc distance between two valid cities and one invalid', async () => {
+    const cities: City[] = [
+        {
+            name: 'city 1'
+        },
+        {
+            name: 'city 2'
+        },
+        {
+            name: 'city 3'
+        }
+    ]
+
+    await CityService.saveAll(cities.slice(1, cities.length))
+    
+    const distances: Distance[] = [
+        {
+            originId: cities[1].id!,
+            destinyId: cities[2].id!,
+            value: 150
+        }
+    ]
+
+    await DistanceService.saveAll(distances)
+
+    const cost: Cost = {
+         value: 100
+    }
+
+    await CostService.save(cost)
+
+    const result = await PathService.calcPath(cities, cost)
+
+    expect(result).toBe(undefined)
+})
+
+test('calc distance between three cities without second distance', async () => {
+    const cities: City[] = [
+        {
+            name: 'city 1'
+        },
+        {
+            name: 'city 2'
+        },
+        {
+            name: 'city 3'
+        }
+    ]
+
+    await CityService.saveAll(cities)
+    
+    const distances: Distance[] = [
+        {
+            originId: cities[0].id!,
+            destinyId: cities[1].id!,
+            value: 150
+        }
+    ]
+
+    await DistanceService.saveAll(distances)
+
+    const cost: Cost = {
+         value: 100
+    }
+
+    await CostService.save(cost)
+
+    const result = await PathService.calcPath(cities, cost)
+
+    expect(result).toBe(undefined)
+})
+
+test('calc distance between three cities without first distance', async () => {
+    const cities: City[] = [
+        {
+            name: 'city 1'
+        },
+        {
+            name: 'city 2'
+        },
+        {
+            name: 'city 3'
+        }
+    ]
+
+    await CityService.saveAll(cities)
+    
+    const distances: Distance[] = [
+        {
+            originId: cities[1].id!,
+            destinyId: cities[2].id!,
+            value: 150
+        }
+    ]
+
+    await DistanceService.saveAll(distances)
+
+    const cost: Cost = {
+         value: 100
+    }
+
+    await CostService.save(cost)
+
+    const result = await PathService.calcPath(cities, cost)
+
+    expect(result).toBe(undefined)
 })

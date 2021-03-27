@@ -12,17 +12,17 @@ test('saveAll with three values', async () => {
         {
             destinyId: 1,
             originId: 2,
-            valueInKm: 100
+            value: 100
         },
         {
             destinyId: 2,
             originId: 3,
-            valueInKm: 150
+            value: 150
         },
         {
             destinyId: 4,
             originId: 3,
-            valueInKm: 210
+            value: 210
         },
     ]
 
@@ -48,12 +48,12 @@ test('saveAll with two values (with same destiny and origin)', async () => {
         {
             destinyId: 2,
             originId: 2,
-            valueInKm: 0
+            value: 0
         },
         {
             destinyId: 3,
             originId: 3,
-            valueInKm: 150
+            value: 150
         },
     ]
 
@@ -69,12 +69,12 @@ test('getAll with two values', async () => {
         {
             destinyId: 1,
             originId: 2,
-            valueInKm: 100
+            value: 100
         },
         {
             destinyId: 2,
             originId: 3,
-            valueInKm: 150
+            value: 150
         }
     ]
 
@@ -83,9 +83,9 @@ test('getAll with two values', async () => {
     const distances = await DistanceService.getAll()
 
     expect(distances.length).toBe(2)
-    expect(distances.find(item => item.destinyId === 2 && item.originId === 3 && item.valueInKm === 150))
+    expect(distances.find(item => item.destinyId === 2 && item.originId === 3 && item.value === 150))
         .not.toBe(undefined)
-    expect(distances.find(item => item.destinyId === 1 && item.originId === 2 && item.valueInKm === 100))
+    expect(distances.find(item => item.destinyId === 1 && item.originId === 2 && item.value === 100))
         .not.toBe(undefined)
 })
 
@@ -94,22 +94,22 @@ test('getAll with four values (two with equal origin and destiny)', async () => 
         {
             destinyId: 1,
             originId: 2,
-            valueInKm: 100
+            value: 100
         },
         {
             destinyId: 2,
             originId: 3,
-            valueInKm: 150
+            value: 150
         },
         {
             destinyId: 3,
             originId: 3,
-            valueInKm: 0
+            value: 0
         },
         {
             destinyId: 4,
             originId: 4,
-            valueInKm: 5
+            value: 5
         }
     ]
 
@@ -118,13 +118,13 @@ test('getAll with four values (two with equal origin and destiny)', async () => 
     const distances = await DistanceService.getAll()
 
     expect(distances.length).toBe(4)
-    expect(distances.find(item => item.destinyId === 2 && item.originId === 3 && item.valueInKm === 150))
+    expect(distances.find(item => item.destinyId === 2 && item.originId === 3 && item.value === 150))
         .not.toBe(undefined)
-    expect(distances.find(item => item.destinyId === 1 && item.originId === 2 && item.valueInKm === 100))
+    expect(distances.find(item => item.destinyId === 1 && item.originId === 2 && item.value === 100))
         .not.toBe(undefined)
-    expect(distances.find(item => item.destinyId === 3 && item.originId === 3 && item.valueInKm === 0))
+    expect(distances.find(item => item.destinyId === 3 && item.originId === 3 && item.value === 0))
         .not.toBe(undefined)
-    expect(distances.find(item => item.destinyId === 4 && item.originId === 4 && item.valueInKm === 5))
+    expect(distances.find(item => item.destinyId === 4 && item.originId === 4 && item.value === 5))
         .not.toBe(undefined)
 })
 
@@ -140,12 +140,12 @@ test('deleteAll with two values', async () => {
         {
             destinyId: 1,
             originId: 2,
-            valueInKm: 100
+            value: 100
         },
         {
             destinyId: 2,
             originId: 3,
-            valueInKm: 150
+            value: 150
         }
     ]
 

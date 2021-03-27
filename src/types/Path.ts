@@ -1,13 +1,9 @@
-interface PathItem {
-    originCity: string
-    destinyCity: string
-    distanceInKM: number
-}
+import ShortPath from "./ShortPath"
 
 interface Path {
-    items: PathItem[]
+    shortPaths: ShortPath[]
     totalCost: number
-    totalDistanceInKM: number
+    totalDistance: number
     totalFuel: number
     totalDays: number
 }

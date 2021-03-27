@@ -6,7 +6,7 @@ jest.mock("../../storage/Database.ts")
 
 test('save one item', async () => {
     const entity: Cost = {
-        valueInRS: 50
+        value: 50
     }
 
     await CostService.save(entity)
@@ -15,12 +15,12 @@ test('save one item', async () => {
 
     expect(cost).not.toBe(undefined)
     expect(cost?.id === entity.id).toBe(true)
-    expect(cost?.valueInRS === entity.valueInRS).toBe(true)
+    expect(cost?.value === entity.value).toBe(true)
 })
 
 test('save two itens', async () => {
     const entity: Cost = {
-        valueInRS: 50
+        value: 50
     }
 
     await CostService.save(entity)
@@ -29,10 +29,10 @@ test('save two itens', async () => {
 
     expect(cost).not.toBe(undefined)
     expect(cost?.id === entity.id).toBe(true)
-    expect(cost?.valueInRS === entity.valueInRS).toBe(true)
+    expect(cost?.value === entity.value).toBe(true)
 
     const entity2: Cost = {
-        valueInRS: 100
+        value: 100
     }
 
     await CostService.save(entity2)
@@ -41,24 +41,24 @@ test('save two itens', async () => {
     
     expect(cost2).not.toBe(undefined)
     expect(cost2?.id === entity2.id).toBe(true)
-    expect(cost2?.valueInRS === entity2.valueInRS).toBe(true)
+    expect(cost2?.value === entity2.value).toBe(true)
 })
 
 test('save three itens', async () => {
     const entity1: Cost = {
-        valueInRS: 50
+        value: 50
     }
 
     await CostService.save(entity1)
 
     const entity2: Cost = {
-        valueInRS: 100
+        value: 100
     }
 
     await CostService.save(entity2)
 
     const entity3: Cost = {
-        valueInRS: 100
+        value: 100
     }
 
     await CostService.save(entity3)
@@ -67,12 +67,12 @@ test('save three itens', async () => {
     
     expect(cost).not.toBe(undefined)
     expect(cost?.id === entity3.id).toBe(true)
-    expect(cost?.valueInRS === entity3.valueInRS).toBe(true)
+    expect(cost?.value === entity3.value).toBe(true)
 })
 
 test('isValid with valid entity return right value and message', async () => {
     const entity: Cost = {
-        valueInRS: 100
+        value: 100
     }
 
     const [isValid, message] = await CostService.isValid(entity)
@@ -83,7 +83,7 @@ test('isValid with valid entity return right value and message', async () => {
 
 test('isValid with inValid entity return right value and message', async () => {
     const entity: Cost = {
-        valueInRS: -20
+        value: -20
     }
 
     const [isValid, message] = await CostService.isValid(entity)
@@ -94,7 +94,7 @@ test('isValid with inValid entity return right value and message', async () => {
 
 test('try save one item with negative value', async () => {
     const entity: Cost = {
-        valueInRS: -1
+        value: -1
     }
 
     await CostService.save(entity)
@@ -103,6 +103,6 @@ test('try save one item with negative value', async () => {
 
     expect(entity.id).toBe(undefined)
 
-    if (cost) expect(cost.valueInRS !== entity.valueInRS).toBe(true)
+    if (cost) expect(cost.value !== entity.value).toBe(true)
 })
 

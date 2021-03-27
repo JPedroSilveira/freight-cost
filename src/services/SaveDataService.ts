@@ -75,7 +75,7 @@ class SaveDataService {
                     const distance = {
                         originId: city.id!,
                         destinyId: cities[index].id!,
-                        valueInKm: parseInt(distanceValue)
+                        value: parseInt(distanceValue)
                     } as Distance
                     distances.push(distance)
                 })
