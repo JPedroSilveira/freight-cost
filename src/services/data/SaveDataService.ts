@@ -21,7 +21,9 @@ class SaveDataService {
 
                 const cities = await this.saveCities(citiesLine)
 
-                if (cities) await this.saveCitiesDistances(cities, distancesLines)
+                if (cities) {
+                    return this.saveCitiesDistances(cities, distancesLines)
+                }
             } catch(e) {}
         }
 
@@ -31,7 +33,7 @@ class SaveDataService {
     /**
      * Salva as cidades do CSV no banco de dados
      * @param citiesLine Cabeçalho do CSV representando as cidades
-     * @returns em caso de sucesso retorna a lista de entidade salvas, caso contrário retorna undefined
+     * @returns em caso de sucesso retorna a lista de entidade salvas, caso contrário retorna false
      */
     private saveCities = async (citiesLine: string) => {
         const cities = StringUtils.splitByDotComma(citiesLine)
@@ -41,16 +43,20 @@ class SaveDataService {
             } as City))
 
             // Salva todas as cidades no banco de dados
-            await CityService.saveAll(entities)
+            const success = await CityService.saveAll(entities)
+
+            if (!success) return false
             
             return entities
         }
+        return false
     }
 
     /**
      * Salva as distâncias entre as cidades
-     * @param cities 
-     * @param distancesLines 
+     * @param cities Lista de cidades
+     * @param distancesLines Lista com todas as linhas que representam as distâncias
+     * @returns true em caso de sucesso ou false em caso de erro
      */
     private saveCitiesDistances = async (cities: City[], distancesLines: string[]) => {
         const distances: Distance[] = []
@@ -83,7 +89,7 @@ class SaveDataService {
         })
 
         // Salva no banco de dados
-        DistanceService.saveAll(distances)
+        return DistanceService.saveAll(distances)
     } 
 
     /**
