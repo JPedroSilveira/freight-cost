@@ -2,7 +2,7 @@ interface ShortPath {
     originCity: string
     destinyCity: string
     distanceInKM: number
-    totalCost: number
+    cost: number
 }
 
 export default ShortPath

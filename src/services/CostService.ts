@@ -39,7 +39,7 @@ class CostService {
      ** O segundo é uma string com a descrição do erro
      */
     isValid = (entity: Cost) => {
-        if (entity.valueInRS < 0) return [false, CostConstants.NEGATIVE_COST]
+        if (entity.value < 0) return [false, CostConstants.NEGATIVE_COST]
 
         return [true, '']
     }
