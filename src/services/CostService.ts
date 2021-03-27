@@ -1,3 +1,4 @@
+import CostConstants from "../constants/CostConstants"
 import Cost from "../types/Cost"
 import DexieUtils from "../utils/DexieUtils"
 
@@ -19,13 +20,28 @@ class CostService {
 
 
     /**
-     * Salva um novo valor
+     * Salva um novo valor, caso seja válida será inserido um novo id a entidade
      * @param entity Nova entidade
      */
-    save = async <ENTITY, PK> (entity: Cost) => {
-        await DexieUtils.deleteAll(this.table)
-        entity.id = undefined
-        await DexieUtils.saveWithId(this.table, entity)
+    save = async (entity: Cost) => {
+        if (this.isValid(entity)[0]) {
+            await DexieUtils.deleteAll(this.table)
+            entity.id = undefined
+            await DexieUtils.saveWithId(this.table, entity)
+        }
+    }
+
+    /**
+     * Valida uma entidade Cost
+     * @param entity Entidade a ser validada
+     * @returns retorna um par onde:
+     ** O primeiro valor é um booleano com a validade
+     ** O segundo é uma string com a descrição do erro
+     */
+    isValid = (entity: Cost) => {
+        if (entity.valueInRS < 0) return [false, CostConstants.NEGATIVE_COST]
+
+        return [true, '']
     }
 }
 
