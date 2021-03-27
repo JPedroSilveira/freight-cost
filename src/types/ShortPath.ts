@@ -1,7 +1,7 @@
 interface ShortPath {
     originCity: string
     destinyCity: string
-    distanceInKM: number
+    distance: number
     cost: number
 }
 

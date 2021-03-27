@@ -13,7 +13,7 @@ test('save one item', async () => {
     const version = await DistanceVersionService.get()
 
     expect(version).not.toBe(undefined)
-    expect(version!.value === entity.value).toBe(true)
+    expect((version as DistanceVersion).value === entity.value).toBe(true)
 })
 
 test('save two itens', async () => {
@@ -26,7 +26,7 @@ test('save two itens', async () => {
     const distance = await DistanceVersionService.get()
 
     expect(distance).not.toBe(undefined)
-    expect(distance!.value === entity.value).toBe(true)
+    expect((distance as DistanceVersion).value === entity.value).toBe(true)
 
     const entity2: DistanceVersion = {
         value: 2
@@ -37,7 +37,7 @@ test('save two itens', async () => {
     const distance2 = await DistanceVersionService.get()
     
     expect(distance2).not.toBe(undefined)
-    expect(distance2?.value === entity2.value).toBe(true)
+    expect((distance2 as DistanceVersion).value === entity2.value).toBe(true)
 })
 
 test('save three itens', async () => {
@@ -62,5 +62,5 @@ test('save three itens', async () => {
     const version = await DistanceVersionService.get()
     
     expect(version).not.toBe(undefined)
-    expect(version?.value === entity3.value).toBe(true)
+    expect((version as DistanceVersion).value === entity3.value).toBe(true)
 })

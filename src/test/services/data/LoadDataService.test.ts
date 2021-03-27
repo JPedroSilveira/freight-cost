@@ -1,7 +1,7 @@
-import { LoadDataService } from '../../../services';
+import { LoadDataService } from '../../../services'
 import StringUtils from '../../../utils/StringUtils'
 
-jest.mock("../../services/data/LoadDataService.ts")
+jest.mock("../../../services/data/LoadDataService.ts")
 
 test('read csv mock', async () => {
   const data = await LoadDataService.loadDistances()
