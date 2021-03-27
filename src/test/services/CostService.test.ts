@@ -1,5 +1,6 @@
 import Cost from "../../types/Cost"
 import { CostService } from "../../services"
+import CostConstants from "../../constants/CostConstants"
 
 jest.mock("../../storage/Database.ts")
 
@@ -68,3 +69,40 @@ test('save three itens', async () => {
     expect(cost?.id === entity3.id).toBe(true)
     expect(cost?.valueInRS === entity3.valueInRS).toBe(true)
 })
+
+test('isValid with valid entity return right value and message', async () => {
+    const entity: Cost = {
+        valueInRS: 100
+    }
+
+    const [isValid, message] = await CostService.isValid(entity)
+
+    expect(isValid).toBe(true)
+    expect(message).toBe('')
+})
+
+test('isValid with inValid entity return right value and message', async () => {
+    const entity: Cost = {
+        valueInRS: -20
+    }
+
+    const [isValid, message] = await CostService.isValid(entity)
+
+    expect(isValid).toBe(false)
+    expect(message).toBe(CostConstants.NEGATIVE_COST)
+})
+
+test('try save one item with negative value', async () => {
+    const entity: Cost = {
+        valueInRS: -1
+    }
+
+    await CostService.save(entity)
+
+    const cost = await CostService.get()
+
+    expect(entity.id).toBe(undefined)
+
+    if (cost) expect(cost.valueInRS !== entity.valueInRS).toBe(true)
+})
+
