@@ -14,7 +14,6 @@ test('save one item', async () => {
     const cost = await CostService.get()
 
     expect(cost).not.toBe(undefined)
-    expect(cost?.id === entity.id).toBe(true)
     expect(cost?.value === entity.value).toBe(true)
 })
 
@@ -28,7 +27,6 @@ test('save two itens', async () => {
     const cost = await CostService.get()
 
     expect(cost).not.toBe(undefined)
-    expect(cost?.id === entity.id).toBe(true)
     expect(cost?.value === entity.value).toBe(true)
 
     const entity2: Cost = {
@@ -40,7 +38,6 @@ test('save two itens', async () => {
     const cost2 = await CostService.get()
     
     expect(cost2).not.toBe(undefined)
-    expect(cost2?.id === entity2.id).toBe(true)
     expect(cost2?.value === entity2.value).toBe(true)
 })
 
@@ -66,7 +63,6 @@ test('save three itens', async () => {
     const cost = await CostService.get()
     
     expect(cost).not.toBe(undefined)
-    expect(cost?.id === entity3.id).toBe(true)
     expect(cost?.value === entity3.value).toBe(true)
 })
 
@@ -97,12 +93,11 @@ test('try save one item with negative value', async () => {
         value: -1
     }
 
-    await CostService.save(entity)
+    const result = await CostService.save(entity)
 
     const cost = await CostService.get()
 
-    expect(entity.id).toBe(undefined)
-
+    expect(result).toBe(false)
     if (cost) expect(cost.value !== entity.value).toBe(true)
 })
 

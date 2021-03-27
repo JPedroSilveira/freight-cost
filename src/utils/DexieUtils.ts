@@ -37,12 +37,11 @@ class DexieUtils {
     }
 
     /**
-     * Salva uma entidade, se tiver chave primária tenta atualizar
+     * Salva uma entidade
      * @param table Tabela da entidade 
     */
-    saveWithId = async <ENTITY extends IDTable<PK>, PK> (table: Dexie.Table<ENTITY,PK>, entity: ENTITY) => {
-        const id = await table.put(entity)
-        entity.id = id
+    save = async <ENTITY, PK> (table: Dexie.Table<ENTITY,PK>, entity: ENTITY) => {
+        await table.put(entity)
     }
 }
 

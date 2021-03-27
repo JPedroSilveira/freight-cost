@@ -1,7 +1,7 @@
-import City from "../types/City"
-import Distance from '../types/Distance'
-import StringUtils from "../utils/StringUtils"
-import { CityService, DistanceService } from './index'
+import City from "../../types/City"
+import Distance from '../../types/Distance'
+import StringUtils from "../../utils/StringUtils"
+import { CityService, DistanceService } from '../index'
 
 class SaveDataService {
     /**

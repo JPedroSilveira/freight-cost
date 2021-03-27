@@ -2,7 +2,7 @@ import { CityService, DistanceService, LoadDataService, SaveDataService } from '
 import Distance from '../../types/Distance'
 
 jest.mock("../../storage/Database.ts")
-jest.mock("../../services/LoadDataService.ts")
+jest.mock("../../services/data/LoadDataService.ts")
 
 beforeEach(done => {
     CityService.deleteAll().then(() => 
