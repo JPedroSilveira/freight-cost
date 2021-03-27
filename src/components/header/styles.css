@@ -1,0 +1,28 @@
+.header {
+    position: absolute;
+    top: 0;
+    height: var(--header-height);
+    width: var(--content-width);
+    background-color: var(--color-one);
+    color: var(--color-two);
+}
+
+.header--content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.header--content--logo {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.header--content--title {
+    margin: 0;
+    margin-left: 0.5rem;
+}
