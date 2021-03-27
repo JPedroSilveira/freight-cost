@@ -13,6 +13,11 @@ class DistanceService {
         this.table = table
     }
 
+    /**
+     * Busca todos os destinos com base na origem e no destino
+     * @param index Indíce de busca contendo o id de origem e o id de destino
+     * @returns se existir retorna a entidade correspondente, se não retorna undefined
+     */
     getByOriginAndDestiny = async (index: CompoundIndex) => {
         return this.table.where(index).first()
     }
@@ -26,7 +31,7 @@ class DistanceService {
     }
 
     /**
-     * Salva uma lista de entidades e NÃO atualiza os ids da entrada
+     * Salva uma lista de entidades
      * @param distances Lista de distâncias
      */ 
     saveAll = async (distances: Distance[]) => {
