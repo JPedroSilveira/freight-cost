@@ -1,13 +1,14 @@
 import React from 'react'
-import { ReactComponent as LogoSVG } from '../../assets/logo.svg' 
+import LogoSVG from '../../assets/logo.svg' 
+import AppConstants from '../../constants/AppConstants'
 import './styles.css'
 
 const Header: React.FC = () => {
     return (
         <div className='header'>
             <div className='header--content'>
-                <LogoSVG className='header--content--logo'/>
-                <h1 className='header--content--title'>Custo do Frete</h1>
+                <img src={LogoSVG} alt={AppConstants.LOGO_ALT} className='header--content--logo'/>
+                <h1 className='header--content--title'>{AppConstants.APP_NAME}</h1>
             </div>
         </div>
     )

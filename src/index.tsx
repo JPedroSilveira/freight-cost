@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import ServiceWorkerRegister from './service_worker/ServiceWorkerRegister'
 import App from './view'
 import isMobile from 'is-mobile'
+import {  BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
 import './var.css'
 
@@ -15,7 +16,9 @@ if (isMobile()) {
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 )
