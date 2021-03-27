@@ -21,7 +21,7 @@ class DistanceVersionService {
     /**
      * Salva um novo valor
      * @param entity Nova entidade
-     * @returns true em caso de sucesso ou false em casa de erro na operação
+     * @returns true em caso de sucesso ou false em caso de erro na operação
      */
     save = async (entity: DistanceVersion) => {
         const success = await DexieUtils.deleteAll(this.table)

@@ -38,7 +38,7 @@ test('save two itens', async () => {
     const cost2 = await CostService.get()
     
     expect(cost2).not.toBe(undefined)
-    expect((cost as Cost).value === entity2.value).toBe(true)
+    expect((cost2 as Cost).value === entity2.value).toBe(true)
 })
 
 test('save three itens', async () => {

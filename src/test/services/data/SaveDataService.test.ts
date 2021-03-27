@@ -1,8 +1,9 @@
-import { CityService, DistanceService, LoadDataService, SaveDataService } from '../../services'
-import Distance from '../../types/Distance'
+import { CityService, DistanceService, LoadDataService, SaveDataService } from '../../../services'
+import City from '../../../types/City'
+import Distance from '../../../types/Distance'
 
-jest.mock("../../storage/Database.ts")
-jest.mock("../../services/data/LoadDataService.ts")
+jest.mock("../../../storage/Database.ts")
+jest.mock("../../../services/data/LoadDataService.ts")
 
 beforeEach(done => {
     CityService.deleteAll().then(() => 
@@ -17,7 +18,7 @@ test('all cities from load data are saved', async () => {
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
+    const cities = (await CityService.getAll()) as City[] 
 
     expect(cities.length).toBe(24)
 })
@@ -29,8 +30,8 @@ test('all cities from load data are saved with right name', async () => {
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
-    
+    const cities = (await CityService.getAll()) as City[] 
+
     expect(cities.find(item => item.name === 'ARACAJU')).not.toBe(undefined)
     expect(cities.find(item => item.name === 'BELEM')).not.toBe(undefined)
     expect(cities.find(item => item.name === 'BELO HORIZONTE')).not.toBe(undefined)
@@ -64,7 +65,7 @@ test('all distances of first city from load data are saved with right values', a
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
+    const cities = (await CityService.getAll()) as City[] 
 
     const originCity = cities[0] 
 
@@ -90,7 +91,7 @@ test('all distances of second city from load data are saved with right values', 
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
+    const cities = (await CityService.getAll()) as City[] 
 
     const originCity = cities[1] 
 
@@ -116,7 +117,7 @@ test('all distances of third city from load data are saved with right values', a
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
+    const cities = (await CityService.getAll()) as City[] 
 
     const originCity = cities[2] 
 
@@ -142,7 +143,7 @@ test('all distances of fourth city from load data are saved with right values', 
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
+    const cities = (await CityService.getAll()) as City[] 
 
     const originCity = cities[3] 
 
@@ -168,7 +169,7 @@ test('all distances of fifth city from load data are saved with right values', a
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
+    const cities = (await CityService.getAll()) as City[] 
 
     const originCity = cities[4] 
 
@@ -194,7 +195,7 @@ test('all distances of sixth city from load data are saved with right values', a
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
+    const cities = (await CityService.getAll()) as City[] 
 
     const cuiaba = cities[5] 
 
@@ -220,7 +221,7 @@ test('all distances of seventh city from load data are saved with right values',
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
+    const cities = (await CityService.getAll()) as City[] 
 
     const originCity = cities[6] 
 
@@ -246,7 +247,7 @@ test('all distances of eighth city from load data are saved with right values', 
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
+    const cities = (await CityService.getAll()) as City[] 
 
     const originCity = cities[7] 
 
@@ -272,7 +273,7 @@ test('all distances of twenty-second city from load data are saved with right va
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
+    const cities = (await CityService.getAll()) as City[] 
 
     const originCity = cities[21] 
 
@@ -298,7 +299,7 @@ test('all distances of last city from load data are saved with right values', as
         await SaveDataService.saveDistances(data)
     }
 
-    const cities = await CityService.getAll()
+    const cities = (await CityService.getAll()) as City[] 
 
     const originCity = cities[23] 
 

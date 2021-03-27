@@ -47,11 +47,13 @@ test('calc distance between two cities', async () => {
 
     const result = await PathService.calcShortPath(cities[0], cities[1], cost)
 
-    expect(result).not.toBe(undefined)
-    expect(result!.originCity).toBe(cities[0].name)
-    expect(result!.destinyCity).toBe(cities[1].name)
-    expect(result!.distanceInKM).toBe(distances[1].value)
-    expect(result!.cost).toBe(distances[1].value * cost.value)
+    expect(result.withError).toBe(false)
+    expect(result.withInvalidData).toBe(false)
+    expect(result.withoutPath).toBe(false)
+    expect(result.shortPath!.originCity).toBe(cities[0].name)
+    expect(result.shortPath!.destinyCity).toBe(cities[1].name)
+    expect(result.shortPath!.distance).toBe(distances[1].value)
+    expect(result.shortPath!.cost).toBe(distances[1].value * cost.value)
 })
 
 test('calc distance between invalid cities', async () => {
@@ -72,7 +74,7 @@ test('calc distance between invalid cities', async () => {
 
     const result = await PathService.calcShortPath(cities[0], cities[1], cost)
 
-    expect(result).toBe(undefined)
+    expect(result.withInvalidData).toBe(true)
 })
 
 test('calc distance between cities with invalid ids', async () => {
@@ -95,7 +97,7 @@ test('calc distance between cities with invalid ids', async () => {
 
     const result = await PathService.calcShortPath(cities[0], cities[1], cost)
 
-    expect(result).toBe(undefined)
+    expect(result.withoutPath).toBe(true)
 })
 
 test('calc distance between cities with one invalid city', async () => {
@@ -117,11 +119,11 @@ test('calc distance between cities with one invalid city', async () => {
 
     const result1 = await PathService.calcShortPath(validCity, invalidCity, cost)
 
-    expect(result1).toBe(undefined)
+    expect(result1.withInvalidData).toBe(true)
 
     const result2 = await PathService.calcShortPath(invalidCity, validCity, cost)
     
-    expect(result2).toBe(undefined)
+    expect(result2.withInvalidData).toBe(true)
 })
 
 test('calc distance between three cities', async () => {
@@ -162,19 +164,21 @@ test('calc distance between three cities', async () => {
 
     const result = await PathService.calcPath(cities, cost)
 
-    expect(result).not.toBe(undefined)
+    expect(result.withError).toBe(false)
+    expect(result.withInvalidData).toBe(false)
+    expect(result.withoutPath).toBe(false)
 
-    expect(result!.shortPaths[0].originCity).toBe(cities[0].name)
-    expect(result!.shortPaths[0].destinyCity).toBe(cities[1].name)
+    expect(result.path!.shortPaths[0].originCity).toBe(cities[0].name)
+    expect(result.path!.shortPaths[0].destinyCity).toBe(cities[1].name)
 
-    expect(result!.shortPaths[1].originCity).toBe(cities[1].name)
-    expect(result!.shortPaths[1].destinyCity).toBe(cities[2].name)
+    expect(result.path!.shortPaths[1].originCity).toBe(cities[1].name)
+    expect(result.path!.shortPaths[1].destinyCity).toBe(cities[2].name)
 
     const totalDistance = distances.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)
-    expect(result!.totalCost).toBe(totalDistance * cost.value)
-    expect(result!.totalDistance).toBe(totalDistance)
-    expect(result!.totalDays).toBe(Math.round(totalDistance / CostConstants.KM_PER_DAY))
-    expect(result!.totalFuel).toBe(totalDistance * CostConstants.FUEL_PER_KM)
+    expect(result.path!.totalCost).toBe(totalDistance * cost.value)
+    expect(result.path!.totalDistance).toBe(totalDistance)
+    expect(result.path!.totalDays).toBe(Math.round(totalDistance / CostConstants.KM_PER_DAY))
+    expect(result.path!.totalFuel).toBe(totalDistance * CostConstants.FUEL_PER_KM)
 })
 
 test('calc distance between two valid cities and one invalid', async () => {
@@ -210,7 +214,7 @@ test('calc distance between two valid cities and one invalid', async () => {
 
     const result = await PathService.calcPath(cities, cost)
 
-    expect(result).toBe(undefined)
+    expect(result.withInvalidData).toBe(true)
 })
 
 test('calc distance between three cities without second distance', async () => {
@@ -246,7 +250,7 @@ test('calc distance between three cities without second distance', async () => {
 
     const result = await PathService.calcPath(cities, cost)
 
-    expect(result).toBe(undefined)
+    expect(result.withoutPath).toBe(true)
 })
 
 test('calc distance between three cities without first distance', async () => {
@@ -282,5 +286,5 @@ test('calc distance between three cities without first distance', async () => {
 
     const result = await PathService.calcPath(cities, cost)
 
-    expect(result).toBe(undefined)
+    expect(result.withoutPath).toBe(true)
 })

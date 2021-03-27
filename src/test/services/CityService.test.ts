@@ -27,7 +27,7 @@ test('saveAll with four values', async () => {
 
     const cities = await CityService.getAll()
 
-    expect(cities.length).toBe(4)
+    expect((cities as City[]).length).toBe(4)
 })
 
 test('saveAll with zero values', async () => {
@@ -37,7 +37,7 @@ test('saveAll with zero values', async () => {
 
     const cities = await CityService.getAll()
 
-    expect(cities.length).toBe(0)
+    expect((cities as City[]).length).toBe(0)
 })
 
 test('saveAll update entities ids', async () => {
@@ -76,16 +76,16 @@ test('getAll with three values', async () => {
     await CityService.saveAll(entities)
     const cities = await CityService.getAll()
 
-    expect(cities.length).toBe(3)
-    expect(cities.find(city => city.name === 'teste 1')).not.toBe(undefined)
-    expect(cities.find(city => city.name === 'teste 2')).not.toBe(undefined)
-    expect(cities.find(city => city.name === 'teste 3')).not.toBe(undefined)
+    expect((cities as City[]).length).toBe(3)
+    expect((cities as City[]).find(city => city.name === 'teste 1')).not.toBe(undefined)
+    expect((cities as City[]).find(city => city.name === 'teste 2')).not.toBe(undefined)
+    expect((cities as City[]).find(city => city.name === 'teste 3')).not.toBe(undefined)
 })
 
 test('getAll with zero values', async () => {
     const cities = await CityService.getAll()
 
-    expect(cities.length).toBe(0)
+    expect((cities as City[]).length).toBe(0)
 })
 
 test('getAll with two values', async () => {
@@ -101,16 +101,16 @@ test('getAll with two values', async () => {
 
     const cities = await CityService.getAll()
 
-    expect(cities.length).toBe(2)
-    expect(cities.find(city => city.name === 'teste 1')).not.toBe(undefined)
-    expect(cities.find(city => city.name === 'teste 2')).not.toBe(undefined)
+    expect((cities as City[]).length).toBe(2)
+    expect((cities as City[]).find(city => city.name === 'teste 1')).not.toBe(undefined)
+    expect((cities as City[]).find(city => city.name === 'teste 2')).not.toBe(undefined)
 })
 
 test('deleteAll with zero values', async () => {
     await CityService.deleteAll()
     const cities = await CityService.getAll()
 
-    expect(cities.length).toBe(0)
+    expect((cities as City[]).length).toBe(0)
 })
 
 test('deleteAll with four values', async () => {
@@ -134,5 +134,5 @@ test('deleteAll with four values', async () => {
 
     const cities = await CityService.getAll()
 
-    expect(cities.length).toBe(0)
+    expect((cities as City[]).length).toBe(0)
 })
