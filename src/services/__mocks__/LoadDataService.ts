@@ -30,4 +30,4 @@ class LoadDataService {
     }
 }
 
-export default new LoadDataService()
+export default LoadDataService
