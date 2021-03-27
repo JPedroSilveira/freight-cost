@@ -11,22 +11,23 @@ class CostService {
 
     /**
      * Retorna a primeira entrada
-     * @returns Cost ou undefined
+     * @returns Cost, undefined caso não exista nenhuma registro e false em caso de erro
     */
     get = async () => {
         const data = await DexieUtils.getAll(this.table)
-        return data.length > 0 ? data[0] : undefined
+        return data ? data.length > 0 ? data[0] : undefined : false
     }
 
 
     /**
      * Salva um novo valor
      * @param entity Nova entidade
-     * @returns true se válido, false caso contrário
+     * @returns true se válido, false caso contrário ou em caso de erro
      */
     save = async (entity: Cost) => {
         if (this.isValid(entity)[0]) {
-            await DexieUtils.deleteAll(this.table)
+            const success = await DexieUtils.deleteAll(this.table)
+            if (!success) return false
             await DexieUtils.save(this.table, entity)
             return true
         }

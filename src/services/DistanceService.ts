@@ -16,15 +16,19 @@ class DistanceService {
     /**
      * Busca todos os destinos com base na origem e no destino
      * @param index Indíce de busca contendo o id de origem e o id de destino
-     * @returns se existir retorna a entidade correspondente, se não retorna undefined
+     * @returns se existir retorna a entidade correspondente, se não existir retorna undefined e em caso de erro retorna false
      */
     getByOriginAndDestiny = async (index: CompoundIndex) => {
-        return this.table.where(index).first()
+        try {
+            return this.table.where(index).first()
+        } catch(e) {
+            return false
+        }
     }
 
     /**
      * Retorna todas as entidades no banco de dados
-     * @returns lista com todas as distâncias salvas
+     * @returns lista com todas as distâncias salvas ou false em caso de erro
      */
     getAll = () => {
         return DexieUtils.getAll(this.table)
@@ -33,16 +37,18 @@ class DistanceService {
     /**
      * Salva uma lista de entidades
      * @param distances Lista de distâncias
+     * @returns true em caso de sucesso e false em caso de erro
      */ 
     saveAll = async (distances: Distance[]) => {
-        await DexieUtils.saveAll(this.table, distances)
+        return DexieUtils.saveAll(this.table, distances)
     }
 
     /**
      * Remove todas as distâncias do banco de dados
+     * @returns true em caso de sucesso e false em caso de erro
      */
     deleteAll = async () => {
-        await DexieUtils.deleteAll(this.table)
+        return DexieUtils.deleteAll(this.table)
     }
 }
 

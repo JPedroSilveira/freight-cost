@@ -10,21 +10,23 @@ class DistanceVersionService {
 
     /**
      * Retorna a primeira entrada
-     * @returns DistanceVersion ou undefined
+     * @returns DistanceVersion, undefined caso não hajam registros e false em caso de erro
     */
     get = async () => {
         const data = await DexieUtils.getAll(this.table)
-        return data.length > 0 ? data[0] : undefined
+        return data ? data.length > 0 ? data[0] : undefined : false
     }
 
 
     /**
      * Salva um novo valor
      * @param entity Nova entidade
+     * @returns true em caso de sucesso ou false em casa de erro na operação
      */
     save = async (entity: DistanceVersion) => {
-        await DexieUtils.deleteAll(this.table)
-        await DexieUtils.save(this.table, entity)
+        const success = await DexieUtils.deleteAll(this.table)
+        if (!success) return false
+        return DexieUtils.save(this.table, entity)
     }
 }
 

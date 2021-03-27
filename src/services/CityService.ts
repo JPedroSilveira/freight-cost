@@ -10,7 +10,7 @@ class CityService {
 
     /**
      * Retorna todas as entidades no banco de dados
-     * @returns Lista com todas as cidades salvas
+     * @returns Lista com todas as cidades salvas ou false em caso de erro
      */
     getAll = () => {
         return DexieUtils.getAll(this.table)
@@ -19,16 +19,18 @@ class CityService {
     /**
      * Salva uma lista de cidades e atualiza o id das entradas
      * @param cities Lista de cidades
+     * @returns true em caso de sucesso e false em caso de erro
      */
     saveAll = async (cities: City[]) => {
-        await DexieUtils.saveAllWithId(this.table, cities)
+        return DexieUtils.saveAllWithId(this.table, cities)
     }
 
     /**
      * Remove todas as cidades do banco de dados
+     * @returns true em caso de sucesso e false em caso de erro
      */
     deleteAll = async () => {
-        await DexieUtils.deleteAll(this.table)
+        return DexieUtils.deleteAll(this.table)
     }
 }
 

@@ -1,4 +1,4 @@
-import { DistanceVersionService, LoadDataService, SaveDataService } from '../'
+import { DistanceVersionService, LoadDataService, SaveDataService, CityService, DistanceService } from '../'
 import DistanceVersionConstants from '../../constants/DistanceVersionConstants'
 import DistanceVersion from '../../types/DistanceVersion'
 
@@ -10,9 +10,14 @@ class DataService {
     verifyDistanceDataUpdate = async (): Promise<boolean> => {
         const currentVersion = await DistanceVersionService.get()
 
+        if (currentVersion === false) return false
+
         if (this.shouldUpdateDistance(currentVersion)) {
             const distancesCSV = await LoadDataService.loadDistances()
             if (distancesCSV) {
+                const success = await this.deleteOldDate()
+                if (!success) return false 
+
                 const saved = await SaveDataService.saveDistances(distancesCSV)
                 if (saved) {
                     await DistanceVersionService.save({
@@ -25,6 +30,18 @@ class DataService {
         }
 
         return true
+    }
+
+    /**
+     * Remove todos os dados das tabelas de cidades e distâncias
+     * @returns true em caso de sucesso e false em caso de erro
+     */
+    private deleteOldDate = async () => {
+        const deleteCitiesSuccess = await CityService.deleteAll()
+        if (!deleteCitiesSuccess) return false
+
+        const deleteDistancesSuccess = await DistanceService.deleteAll()
+        return deleteDistancesSuccess
     }
 
     /**

@@ -1,5 +1,5 @@
-import { LoadDataService } from '../../services';
-import StringUtils from '../../utils/StringUtils'
+import { LoadDataService } from '../../../services';
+import StringUtils from '../../../utils/StringUtils'
 
 jest.mock("../../services/data/LoadDataService.ts")
 
