@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Main: React.FC = () => {
+const App: React.FC = () => {
     return (
         <div className='main'>
             
@@ -8,4 +8,4 @@ const Main: React.FC = () => {
     )
 }
 
-export default Main
+export default App
