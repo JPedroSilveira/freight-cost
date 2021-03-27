@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ServiceWorkerRegister from './service_worker/ServiceWorkerRegister'
-import Main from './view'
+import App from './view'
 import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Main />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 )
