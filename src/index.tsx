@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ServiceWorkerRegister from './service_worker/ServiceWorkerRegister'
-import App from './view'
+import App from './app'
 import isMobile from 'is-mobile'
 import {  BrowserRouter as Router } from 'react-router-dom'
 import './index.css'

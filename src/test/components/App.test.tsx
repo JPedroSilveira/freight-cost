@@ -1,10 +1,8 @@
-import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
-import App from '../../view'
+import App from '../../app'
 import AppConstants from '../../constants/AppConstants'
-import '@testing-library/jest-dom/extend-expect'
 
 test('app with header', () => {
     const history = createMemoryHistory()
