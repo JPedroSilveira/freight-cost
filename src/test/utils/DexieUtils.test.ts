@@ -189,23 +189,7 @@ test('get all in table with one item', async () => {
     expect(result.length).toBe(1)
 })
 
-test('save in table with id', async () => {
-    const cityTable = Database.city
-
-    const entity: City = {
-         name: 'teste 1'
-    }
-
-    await DexieUtils.saveWithId(cityTable, entity)
-
-    const result = await DexieUtils.getAll(cityTable)
-    
-    expect(result.length).toBe(1)
-    expect(entity.id).not.toBe(undefined)
-    expect(entity.id === result[0].id).toBe(true)
-})
-
-test('save in table with id two items', async () => {
+test('save in table two items', async () => {
     const cityTable = Database.city
 
     const entity1: City = {
@@ -214,16 +198,14 @@ test('save in table with id two items', async () => {
 
     const entity2: City = {
         name: 'teste 2'
-   }
+    }
 
-    await DexieUtils.saveWithId(cityTable, entity1)
-    await DexieUtils.saveWithId(cityTable, entity2)
+    await DexieUtils.save(cityTable, entity1)
+    await DexieUtils.save(cityTable, entity2)
 
     const result = await DexieUtils.getAll(cityTable)
     
     expect(result.length).toBe(2)
-    expect(entity1.id).not.toBe(undefined)
-    expect(entity2.id).not.toBe(undefined)
-    expect(result.some(item => item.id === entity1.id && item.name === entity1.name)).toBe(true)
-    expect(result.some(item => item.id === entity2.id && item.name === entity2.name)).toBe(true)
+    expect(result.some(item => item.name === entity1.name)).toBe(true)
+    expect(result.some(item => item.name === entity2.name)).toBe(true)
 })

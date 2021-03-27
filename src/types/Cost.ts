@@ -1,5 +1,3 @@
-import IDTable from "./IDTable"
-
-export default interface Cost extends IDTable<number> {
+export default interface Cost {
     value: number
 }

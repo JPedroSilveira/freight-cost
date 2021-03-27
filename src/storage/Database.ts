@@ -2,6 +2,7 @@ import Dexie from 'dexie'
 import City from '../types/City'
 import Cost from '../types/Cost'
 import Distance from '../types/Distance'
+import DistanceVersion from '../types/DistanceVersion'
 
 const DATABASE_NAME = 'CustoFreteDB'
 const DATABASE_VERSION = 1
@@ -18,6 +19,7 @@ class Database extends Dexie {
     city: Dexie.Table<City, number>
     distance: Dexie.Table<Distance, string>
     cost: Dexie.Table<Cost, number>
+    distanceVersion: Dexie.Table<DistanceVersion, number>
     
     /**
      * @param indexedDB Banco de dados opcional caso não queira utilizar o padrão
@@ -30,12 +32,15 @@ class Database extends Dexie {
         this.version(DATABASE_VERSION).stores({
             city: '++id',
             distance: '[originId+destinyId]',
-            cost: '++id'
+            cost: '++id',
+            distanceVersion: 'value'
         })
 
         // Armazena as referências para cada entidade de manipulação das tabelas 
         this.city = this.table('city')
         this.distance = this.table('distance')
+        this.cost = this.table('cost')
+        this.distanceVersion = this.table('distanceVersion')
     }
 }
 

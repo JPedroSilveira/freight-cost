@@ -20,15 +20,17 @@ class CostService {
 
 
     /**
-     * Salva um novo valor, caso seja válida será inserido um novo id a entidade
+     * Salva um novo valor
      * @param entity Nova entidade
+     * @returns true se válido, false caso contrário
      */
     save = async (entity: Cost) => {
         if (this.isValid(entity)[0]) {
             await DexieUtils.deleteAll(this.table)
-            entity.id = undefined
-            await DexieUtils.saveWithId(this.table, entity)
+            await DexieUtils.save(this.table, entity)
+            return true
         }
+        return false
     }
 
     /**

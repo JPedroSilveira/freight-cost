@@ -1,4 +1,4 @@
-import FileUtils from "../utils/FileUtils"
+import FileUtils from "../../utils/FileUtils"
 
 const DISTANCE_FILE = '/data/distance.csv'
 

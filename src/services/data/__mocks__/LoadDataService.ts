@@ -1,4 +1,4 @@
-// src/__mocks__/services/LoadDataService.ts
+// src/__mocks__/services/data/LoadDataService.ts
 
 class LoadDataService {
     loadDistances = async () => {
