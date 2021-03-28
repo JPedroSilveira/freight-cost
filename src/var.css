@@ -4,7 +4,7 @@
 	--color-three: #B9B7BD;
     --color-four: #E7D2CC;
 
-	--content-width: 60vw;
+	--content-width: 50vw;
 	--header-height: 10vh;
 	
 	--flex-diretion: row;
@@ -17,4 +17,26 @@
 [data-device='mobile'] {
 	--content-width: 100vw;
 	--flex-diretion: column;
+}
+
+@media only screen and (max-width: 1200px) {
+	[data-device='desktop'] {
+		--content-width: 60vw;
+		--flex-diretion: column;
+	} 
+}
+
+
+@media only screen and (max-width: 1000px) {
+	[data-device='desktop'] {
+		--content-width: 80vw;
+		--flex-diretion: column;
+	} 
+}
+
+@media only screen and (max-width: 800px) {
+	[data-device='desktop'] {
+		--content-width: 100vw;
+		--flex-diretion: column;
+	} 
 }

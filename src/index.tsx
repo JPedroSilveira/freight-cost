@@ -17,6 +17,7 @@ if (body) {
     body.setAttribute('data-device', 'mobile')
     body.setAttribute('class', 'mobile')
   } else {
+    body.setAttribute('data-device', 'desktop')
     body.setAttribute('class', 'desktop')
   }
 }
