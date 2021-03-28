@@ -1,8 +1,9 @@
 import React from 'react'
 import ShortPathType from '../../../types/ShortPath'
 import LogoSVG from '../../../assets/logo.svg' 
-import './styles.css'
 import StringUtils from '../../../utils/StringUtils'
+import './styles.css'
+import AppConstants from '../../../constants/AppConstants'
 
 const ShortPath: React.FC<{
     shortPath: ShortPathType
@@ -13,7 +14,7 @@ const ShortPath: React.FC<{
 }) => {
     return (
         <div className='short-path' key={key}>
-            <img src={LogoSVG} />
+            <img alt={AppConstants.LOGO_ALT} src={LogoSVG} />
             <div className='short-path--data'>
                 <p>De: {shortPath.originCity}</p>
                 <p>Para: {shortPath.destinyCity}</p>

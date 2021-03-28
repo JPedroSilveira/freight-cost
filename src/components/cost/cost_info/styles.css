@@ -34,10 +34,6 @@
     margin-left: 0.25rem;
 }
 
-.mobile .cost-info--box--value span {
-    margin-left: 0rem;
-}
-
 .cost-info .button {
     margin-left: 1rem;
     border-radius: var(--paper-radius);

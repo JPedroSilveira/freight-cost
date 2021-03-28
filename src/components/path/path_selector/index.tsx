@@ -11,9 +11,8 @@ import Button from '../../button'
 import { Paper } from '@material-ui/core'
 import Loader from '../../loader'
 import StringUtils from '../../../utils/StringUtils'
-import './styles.css'
-import { truncate } from 'fs'
 import PathConstants from '../../../constants/PathConstants'
+import './styles.css'
 
 interface SelectionCity extends City {
     selected: boolean
