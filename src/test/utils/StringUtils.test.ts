@@ -187,3 +187,31 @@ test('detect empty string with multiple empty spaces', async () => {
     const result = StringUtils.isEmpty('    ')
     expect(result).toBe(true)
 })
+
+test('numberToReais with zero value', async () => {
+    const result = StringUtils.numberToReais(0)
+    expect(result).toBe("R$ 0,00")
+})
+
+test('numberToReais with usual value', async () => {
+    const result = StringUtils.numberToReais(23.65)
+    expect(result).toBe("R$ 23,65")
+})
+
+test('numberToReais with not rounded value (to floor)', async () => {
+    const result = StringUtils.numberToReais(23.6523)
+    expect(result).toBe("R$ 23,65")
+})
+
+test('numberToReais with not rounded value (to ceil)', async () => {
+    const result = StringUtils.numberToReais(23.6573)
+    expect(result).toBe("R$ 23,66")
+})
+
+test('numberToReais with negative value', async () => {
+    const result = StringUtils.numberToReais(-23)
+    expect(result).toBe("R$ 0,00")
+})
+
+
+

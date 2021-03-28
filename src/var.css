@@ -6,8 +6,11 @@
 
 	--content-width: 60vw;
 	--header-height: 10vh;
+	
+	--flex-diretion: row;
 }
 
 [data-device='mobile'] {
 	--content-width: 100vw;
+	--flex-diretion: column;
 }

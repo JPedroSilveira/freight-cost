@@ -19,6 +19,17 @@ class StringUtils {
     }
 
     /**
+     * Transforma um número em uma string representando um valor em reais
+     * @param value número
+     * @returns string formatada dee acordo com a moeda Real no Brasil
+     */
+    numberToReais = (value: number) => {
+        if (value < 0) value = 0
+        const stringValue = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+        return `R$ ${stringValue.substr(3, stringValue.length)}`
+    }
+
+    /**
      * Valida se uma string é vazia ou nula
      * @param str String de entrada
      */
