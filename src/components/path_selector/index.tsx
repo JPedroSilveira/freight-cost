@@ -85,10 +85,17 @@ const PathSelector: React.FC<{
         onCalcPath(path)
         setPath([])
         setInput('')
+        const selectionData = cities.map(item => ({
+            ...item,
+            selected: false
+        } as SelectionCity))
+        setOptions(selectionData)
     }
 
     const handleSelectionChange = (event: React.ChangeEvent<{}>, cities: SelectionCity[]) => {
-        if (path.length > cities.length) {
+        if (cities.length === 0) {
+            handleSelectionRemoveAll()
+        } else if (path.length > cities.length) {
             handleSelectionRemove(cities)
         } else {
             handleSelectionAdd(cities)
@@ -106,6 +113,15 @@ const PathSelector: React.FC<{
         addCopyInOptions(selectedCity)
         selectedCity.selected = true
         setPath(cities)
+    }
+    
+    const handleSelectionRemoveAll = () => {
+        const selectionData = cities.map(item => ({
+            ...item,
+            selected: false
+        } as SelectionCity))
+        setOptions(selectionData)
+        setPath([])
     }
 
     const handleSelectionInputChange = (event: React.ChangeEvent<{}>, value: string) => {
