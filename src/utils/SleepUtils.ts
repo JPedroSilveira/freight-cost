@@ -7,7 +7,6 @@ class SleepUtils {
         await this.sleep(min * 1000)
     }
 
-
     inMin = async (min: number) => {
         await this.sleep(min * 60000)
     }

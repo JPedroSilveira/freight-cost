@@ -286,5 +286,5 @@ test('moneyMask respect max size', async () => {
 
     const result = CostService.moneyMask(value)
 
-    expect(result).toBe('32132111224')
+    expect(result).toBe('32132111.24')
 })

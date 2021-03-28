@@ -5,7 +5,7 @@ import { CostService } from '../../../services'
 import AppConstants from '../../../constants/AppConstants'
 import Cost from '../../../types/Cost'
 import CostConstants from '../../../constants/CostConstants'
-import Button from '@material-ui/core/Button'
+import Button from '../../button'
 import CostDialog from '../cost_dialog/index'
 import { toast } from 'react-toastify'
 import './styles.css'
@@ -57,12 +57,7 @@ const CostInfo: React.FC = () => {
                         <span>{`${CostConstants.COST_INFO_TEXT}: `}</span>
                         <span>{CostService.getStringValueWithCurrencySymbol(cost)}</span>
                     </h2>
-                    <Button 
-                        onClick={handleOpenDialog} 
-                        className='cost-info--box--button' 
-                        variant="contained" 
-                        color="primary"
-                    >
+                    <Button onClick={handleOpenDialog} variant="contained" >
                         {CostConstants.COST_BUTTON_TEXT}
                     </Button>
                 </div>

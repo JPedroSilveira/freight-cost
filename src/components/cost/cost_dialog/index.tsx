@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core'
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core'
 import CostConstants from '../../../constants/CostConstants'
 import Transition from '../../transition'
 import Cost from '../../../types/Cost'
@@ -7,6 +7,7 @@ import { CostService } from '../../../services'
 import Loader from '../../loader'
 import AppConstants from '../../../constants/AppConstants'
 import { toast } from 'react-toastify'
+import Button from '../../button'
 import './styles.css'
 
 const CostDialog: React.FC<{
@@ -92,10 +93,10 @@ const CostDialog: React.FC<{
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={onClose} color="primary">
+            <Button onClick={onClose}>
               {CostConstants.CANCEL_BUTTON_TEXT}
             </Button>
-            <Button onClick={handleSave} color="primary">
+            <Button onClick={handleSave}>
               {CostConstants.SAVE_BUTTON_TEXT}
             </Button>
           </DialogActions>

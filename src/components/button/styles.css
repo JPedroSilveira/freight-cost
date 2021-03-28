@@ -1,0 +1,13 @@
+.button.MuiButton-containedPrimary {
+    background-color: var(--color-four);
+    color: black;
+    font-weight: bold;
+}
+
+.button.MuiButton-containedPrimary:hover {
+    background-color: var(--color-two);
+}
+
+.button.MuiButton-textPrimary {
+    color: black;
+}
