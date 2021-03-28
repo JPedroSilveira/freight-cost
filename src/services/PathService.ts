@@ -5,7 +5,7 @@ import Cost from "../types/Cost"
 import CostConstants from "../constants/CostConstants"
 import Path from "../types/Path"
 
-interface Result {
+export interface Result {
     withError: boolean
     withoutPath: boolean
     withInvalidData: boolean
@@ -17,11 +17,11 @@ interface CitiesPathsResult extends Result {
     totalDistance: number
 }
 
-interface ShortPathResult extends Result {
+export interface ShortPathResult extends Result {
     shortPath?: ShortPath
 }
 
-interface PathResult extends Result {
+export interface PathResult extends Result {
     path?: Path
 }
 
@@ -120,7 +120,7 @@ class PathService {
 
         const shortPaths = shortPathResults.shortPaths
         const totalFuel = CostConstants.FUEL_PER_KM * shortPathResults.totalDistance
-        const totalDays = Math.round(shortPathResults.totalDistance / CostConstants.KM_PER_DAY)
+        const totalDays = Math.ceil(shortPathResults.totalDistance / CostConstants.KM_PER_DAY)
 
         const path: Path = {
             shortPaths: shortPaths,

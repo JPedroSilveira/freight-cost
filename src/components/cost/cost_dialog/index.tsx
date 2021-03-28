@@ -73,14 +73,14 @@ const CostDialog: React.FC<{
         TransitionComponent={Transition}
         keepMounted
         onClose={onClose}
-        className='alert-dialog'
-        aria-labelledby="alert-dialog--title"
+        className='cost-dialog'
+        aria-labelledby="cost-dialog--title"
       >
         <Loader isLoading={isLoading}>
-          <DialogTitle id="alert-dialog--title">{CostConstants.UPDATE_COST_DIALOG_TITLE}</DialogTitle>
+          <DialogTitle id="cost-dialog--title">{CostConstants.UPDATE_COST_DIALOG_TITLE}</DialogTitle>
           <DialogContent>
             <TextField
-              id='alert-dialog--value'
+              id='cost-dialog--value'
               label={CostConstants.UPDATE_COST_LABEL_TEXT}
               name='custo'
               type="tel"

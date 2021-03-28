@@ -57,7 +57,7 @@ class CostService {
      */
     getStringValueWithCurrencySymbol = (entity?: Cost) => {
         const value = entity ?  entity.value : DEFAULT_VALUE
-        return `R$ ${StringUtils.numberToMoneyString(value)}`
+        return StringUtils.numberToMoneyStringWithSymbol(value)
     }
 
     /**

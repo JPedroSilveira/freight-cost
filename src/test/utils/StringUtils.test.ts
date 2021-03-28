@@ -291,6 +291,29 @@ test('removerSpecials with all special characters', async () => {
     expect(result).toBe('AaEeOoIiUuAaOoAaEeIiOoUuAaEeIiOoUuCc')
 })
 
+test('numberToMoneyStringWithSymbol with usual value', async () => {
+    const result = StringUtils.numberToMoneyStringWithSymbol(5.32)
+
+    expect(result).toBe('R$ 5,32')
+})
+
+test('numberToMoneyStringWithSymbol with unrounded value (to floor)', async () => {
+    const result = StringUtils.numberToMoneyStringWithSymbol(5.322)
+
+    expect(result).toBe('R$ 5,32')
+})
+
+test('numberToMoneyStringWithSymbol with unrounded value (to ceil)', async () => {
+    const result = StringUtils.numberToMoneyStringWithSymbol(5.327)
+
+    expect(result).toBe('R$ 5,33')
+})
+
+test('numberToMoneyStringWithSymbol with negative value', async () => {
+    const result = StringUtils.numberToMoneyStringWithSymbol(-5.327)
+
+    expect(result).toBe('R$ 0,00')
+})
 
 
 

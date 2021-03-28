@@ -1,5 +1,5 @@
 .path-selector {
-    width: 80%;
+    width: var(--main-item-width);
     background-image: var(--background-pattern);
     overflow: hidden;
 }
@@ -20,7 +20,7 @@
 .path-selector .MuiChip-root.MuiAutocomplete-tag {
     display: flex;
     flex-direction: row;
-    background-image: url('../../assets/logo.svg');
+    background-image: url('../../../assets/logo.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: left;
@@ -38,6 +38,13 @@
 
 .path-selector--input-container {
     width: 90%;
+}
+
+.path-selector--input-container .MuiInputBase-root.MuiOutlinedInput-root.MuiAutocomplete-inputRoot {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .path-selector--input-container--autocomplete {

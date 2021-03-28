@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import TextField from '@material-ui/core/TextField'
-import City from '../../types/City'
-import CityService from '../../services/CityService'
+import City from '../../../types/City'
+import CityService from '../../../services/CityService'
 import { toast } from 'react-toastify'
-import AppConstants from '../../constants/AppConstants'
-import CityConstants from '../../constants/CityConstants'
-import SortUtils from '../../utils/SortUtils'
-import Button from '../button'
+import AppConstants from '../../../constants/AppConstants'
+import CityConstants from '../../../constants/CityConstants'
+import SortUtils from '../../../utils/SortUtils'
+import Button from '../../button'
 import { Paper } from '@material-ui/core'
-import Loader from '../loader'
-import StringUtils from '../../utils/StringUtils'
+import Loader from '../../loader'
+import StringUtils from '../../../utils/StringUtils'
 import './styles.css'
+import { truncate } from 'fs'
+import PathConstants from '../../../constants/PathConstants'
 
 interface SelectionCity extends City {
     selected: boolean
@@ -29,6 +31,8 @@ const PathSelector: React.FC<{
     const [options, setOptions] = useState<SelectionCity[]>([])
     const [path, setPath] = useState<SelectionCity[]>([])
     const [input, setInput] = useState('')
+    const [error, setError] = useState<boolean>(true)
+    const [errorMessage, setErrorMessage] = useState<string | undefined>()
 
     useEffect(() => {
         const loadData = async () => {
@@ -82,7 +86,12 @@ const PathSelector: React.FC<{
     }
 
     const handleButtonClick = () => {
-        onCalcPath(path)
+        if (path.length < 2) {
+            setError(true)
+            setErrorMessage(PathConstants.TOO_SHORT_PATH)
+            return
+        }
+        
         setPath([])
         setInput('')
         const selectionData = cities.map(item => ({
@@ -90,6 +99,7 @@ const PathSelector: React.FC<{
             selected: false
         } as SelectionCity))
         setOptions(selectionData)
+        onCalcPath(path)
     }
 
     const handleSelectionChange = (event: React.ChangeEvent<{}>, cities: SelectionCity[]) => {
@@ -125,6 +135,11 @@ const PathSelector: React.FC<{
     }
 
     const handleSelectionInputChange = (event: React.ChangeEvent<{}>, value: string) => {
+        if (error) {
+            setError(false)
+            setErrorMessage(undefined)
+        }
+        
         const optionMatch = handleInputSeparetor(value)
         optionMatch ? setInput('') : setInput(value)
     }
@@ -172,7 +187,8 @@ const PathSelector: React.FC<{
                             <TextField
                                 {...params}
                                 variant="outlined"
-                                label={CityConstants.CITIES_SELECT_LABEL}
+                                error={error}
+                                helperText={errorMessage}
                                 placeholder={CityConstants.CITIES_SELECT_PLACE_HOLDER}
                             />
                         )}

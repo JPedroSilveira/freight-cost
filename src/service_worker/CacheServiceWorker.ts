@@ -6,7 +6,7 @@ import { StaleWhileRevalidate } from 'workbox-strategies'
 
 class CacheServiceWorker {
   private FILE_EXTENSION_REGEX = new RegExp('/[^/?]+\\.[^/]+$')
-  private FILE_EXTENSION_TO_CACHE = ['png', 'csv']
+  private FILE_EXTENSION_TO_CACHE = ['png', 'svg']
 
   registerCache = (scope: ServiceWorkerGlobalScope) => {
     clientsClaim()

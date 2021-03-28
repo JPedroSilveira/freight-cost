@@ -30,6 +30,17 @@ class StringUtils {
     }
 
     /**
+     * Transforma um número em uma string representando um valor monetário com o símbolo da moeda (R$)
+     * @param value número
+     * @returns string formatada
+     */
+    numberToMoneyStringWithSymbol = (value: number) => {
+        if (value < 0) value = 0
+        const stringValue = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+        return `R$ ${stringValue.substr(3, stringValue.length)}`
+    }
+
+    /**
      * Valida se uma string é vazia ou nula
      * @param str String de entrada
      */

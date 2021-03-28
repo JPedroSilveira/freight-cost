@@ -1,4 +1,4 @@
-.mobile .alert-dialog.MuiDialog-root {
+.mobile .cost-dialog.MuiDialog-root {
     width: 100vw;
     height: 40vh;
     bottom: 0;
@@ -7,30 +7,30 @@
     inset: 60vh 0 0 0 !important; 
 }
 
-.mobile .alert-dialog .MuiDialog-paperWidthSm {
+.mobile .cost-dialog .MuiDialog-paperWidthSm {
     width: 100%;
     margin: 0;
     height: 100%;
     max-height: 100%;
 }
 
-.mobile .alert-dialog .MuiDialogActions-root {
+.mobile .cost-dialog .MuiDialogActions-root {
     align-items: flex-end;
 }
 
-.desktop .alert-dialog .MuiDialog-paperWidthSm {
+.desktop .cost-dialog .MuiDialog-paperWidthSm {
     margin: 0;
     padding: 0 1rem 0 1rem;
 }
 
-.alert-dialog h2.MuiTypography-root {
+.cost-dialog h2.MuiTypography-root {
     font-size: 1.5rem;
 }
 
-.alert-dialog .MuiFormLabel-root {
+.cost-dialog .MuiFormLabel-root {
     font-size: 1.3rem;
 }
 
-.alert-dialog .MuiInputBase-root {
+.cost-dialog .MuiInputBase-root {
     font-size: 1.3rem;
 }

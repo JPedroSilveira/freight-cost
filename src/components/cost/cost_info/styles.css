@@ -2,7 +2,7 @@
     border-radius: var(--paper-radius);
     background-color: #DFDBE5;
     background-image: var(--background-pattern);
-    width: 80%;
+    width: var(--main-item-width);
 }
 
 .cost-info :first-child{
@@ -34,9 +34,13 @@
     margin-left: 0.25rem;
 }
 
+.mobile .cost-info--box--value span {
+    margin-left: 0rem;
+}
+
 .cost-info .button {
-    margin-left: 2rem;
-    border-radius: 10px;
+    margin-left: 1rem;
+    border-radius: var(--paper-radius);
     padding: 0.5rem 2rem 0.5rem 2rem;
 }
 

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react'
-import PathSelector from '../../components/path_selector'
+import PathSelector from '../../components/path/path_selector'
 import CityConstants from '../../constants/CityConstants'
 import City from '../../types/City'
 import CityService from '../../services/CityService'

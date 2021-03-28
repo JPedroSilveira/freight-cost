@@ -1,0 +1,27 @@
+.short-path {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background: var(--background-pattern);
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--paper-radius);
+}
+
+.short-path img {
+    width: 3rem;
+    height: auto;
+}
+
+.short-path p { 
+    margin-left: 1rem;
+}
+
+.mobile .short-path p {
+    margin-left: 0.5rem;
+}
+
+.short-path--data {
+    display: flex;
+    flex-direction: var(--flex-diretion);
+}

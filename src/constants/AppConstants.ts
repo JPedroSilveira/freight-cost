@@ -5,6 +5,7 @@ class AppConstants {
     ERROR_LOADING_DATA = 'Erro ao carregar informações, reinicie o aplicativo'
     UNKNOW_ERROR = 'Erro desconhecido, reinicie e tente novamente'
     SUCCESS = 'Sucesso'
+    SHUTDOWN_BUTTON_TEXT = 'Sair'
 }
 
 export default new AppConstants()
