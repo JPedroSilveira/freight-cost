@@ -251,9 +251,9 @@ test('save button add new cost', async () => {
     const button = screen.getByText(CostConstants.SAVE_BUTTON_TEXT) as HTMLButtonElement
 
     fireEvent.change(input, { target: { value: '1.10' } })
-    await SleepUtils.inSec(1)
+    await SleepUtils.inSec(2)
     fireEvent.click(button)
-    await SleepUtils.inSec(1)
+    await SleepUtils.inSec(2)
 
     expect(input.value).toBe('1.10')
 
