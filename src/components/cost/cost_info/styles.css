@@ -1,36 +1,45 @@
-.cost {
+.cost-info {
+    border-radius: 10px;
     height: 4rem;
-    padding: 0.5rem 2rem 0.5rem 2rem;
     background-color: #DFDBE5;
     background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%239C92AC' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
-.cost :first-child{
+.cost-info :first-child{
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.cost.MuiPaper-rounded {
     border-radius: 10px;
 }
 
-.cost-value {
+.cost-info.MuiPaper-rounded {
+    border-radius: 10px;
+}
+
+.cost-info--box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
+.cost-info--box--value {
     display: flex;
     flex-direction: var(--flex-diretion);
     font-size: large;
 }
 
-.cost-value span {
+.cost-info--box--value span {
     margin-left: 0.25rem;
 }
 
-.cost-button.MuiButtonBase-root {
+.cost-info--box--button.MuiButtonBase-root {
     margin-left: 2rem;
     border-radius: 10px;
     padding: 0.5rem 2rem 0.5rem 2rem;
 }
 
-.cost-button.MuiButton-containedPrimary {
+.cost-info-button.MuiButton-containedPrimary {
     background-color: var(--color-two);
 }

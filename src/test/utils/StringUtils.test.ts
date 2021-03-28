@@ -189,29 +189,98 @@ test('detect empty string with multiple empty spaces', async () => {
 })
 
 test('numberToReais with zero value', async () => {
-    const result = StringUtils.numberToReais(0)
-    expect(result).toBe("R$ 0,00")
+    const result = StringUtils.numberToMoneyString(0)
+    expect(result).toBe("0,00")
 })
 
 test('numberToReais with usual value', async () => {
-    const result = StringUtils.numberToReais(23.65)
-    expect(result).toBe("R$ 23,65")
+    const result = StringUtils.numberToMoneyString(23.65)
+    expect(result).toBe("23,65")
 })
 
 test('numberToReais with not rounded value (to floor)', async () => {
-    const result = StringUtils.numberToReais(23.6523)
-    expect(result).toBe("R$ 23,65")
+    const result = StringUtils.numberToMoneyString(23.6523)
+    expect(result).toBe("23,65")
 })
 
 test('numberToReais with not rounded value (to ceil)', async () => {
-    const result = StringUtils.numberToReais(23.6573)
-    expect(result).toBe("R$ 23,66")
+    const result = StringUtils.numberToMoneyString(23.6573)
+    expect(result).toBe("23,66")
 })
 
 test('numberToReais with negative value', async () => {
-    const result = StringUtils.numberToReais(-23)
-    expect(result).toBe("R$ 0,00")
+    const result = StringUtils.numberToMoneyString(-23)
+    expect(result).toBe("0,00")
 })
 
+test('removeBlankSpace with empty string', async () => {
+    const value = ''
+    const result = StringUtils.removeBlankSpace(value)
+    expect(result).toBe('')
+})
 
+test('removeBlankSpace with one blank space', async () => {
+    const value = ' '
+    const result = StringUtils.removeBlankSpace(value)
+    expect(result).toBe('')
+})
 
+test('removeBlankSpace with three blank spaces', async () => {
+    const value = 'a 323 21sa '
+    const result = StringUtils.removeBlankSpace(value)
+    expect(result).toBe('a32321sa')
+})
+
+test('removeBlankSpace starting with blank space', async () => {
+    const value = ' a323 21sd a'
+    const result = StringUtils.removeBlankSpace(value)
+    expect(result).toBe('a32321sda')
+})
+
+test('removeSubstring with ;', async () => {
+    const value = '323;21;;sda;'
+    const result = StringUtils.removeSubstring(value, ';')
+    expect(result).toBe('32321sda')
+})
+
+test('removeSubstring with ;; (substring of size 2)', async () => {
+    const value = '323;21;;sda;'
+    const result = StringUtils.removeSubstring(value, ';;')
+    expect(result).toBe('323;21sda;')
+})
+
+test('removeSubstring with three characters', async () => {
+    const value = '32aba322sdaaba'
+    const result = StringUtils.removeSubstring(value, 'aba')
+    expect(result).toBe('32322sda')
+})
+
+test('removeSubstring with empty string as substring', async () => {
+    const value = '32aba322sdaaba'
+    const result = StringUtils.removeSubstring(value, '')
+    expect(result).toBe('32aba322sdaaba')
+})
+
+test('removeSubstring with empty string as string', async () => {
+    const value = ''
+    const result = StringUtils.removeSubstring(value, 'a')
+    expect(result).toBe('')
+})
+
+test('removeSubstring with empty string in both sides', async () => {
+    const value = ''
+    const result = StringUtils.removeSubstring(value, '')
+    expect(result).toBe('')
+})
+
+test('removeNonNumerical with empty string', async () => {
+    const value = ''
+    const result = StringUtils.removeNonNumerical(value)
+    expect(result).toBe('')
+})
+
+test('removeNonNumerical with random characters', async () => {
+    const value = 'Kvm5=!rcqsX3*kphfC88MYCva37+n6q&XAhNJaFEnsPO27*s%!qnAoBZ3qfPSDqZRBy*=2fAE7Ot&CjY0q2qwq&6H2oWWZNn7*gKsad.adjio^2q´~ ´; ; ~[ ~] \'das 34 . 00' 
+    const result = StringUtils.removeNonNumerical(value)
+    expect(result).toBe('5388376273270262723400')
+})
