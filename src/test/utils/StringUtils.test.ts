@@ -284,3 +284,15 @@ test('removeNonNumerical with random characters', async () => {
     const result = StringUtils.removeNonNumerical(value)
     expect(result).toBe('5388376273270262723400')
 })
+
+test('removerSpecials with all special characters', async () => {
+    const value = 'ÂâÊêÔôÎîÛûÃãÕõÁáÉéÍíÓóÚúÀàÈèÌìÒòÙùÇç' 
+    const result = StringUtils.removerSpecials(value)
+    expect(result).toBe('AaEeOoIiUuAaOoAaEeIiOoUuAaEeIiOoUuCc')
+})
+
+
+
+
+
+

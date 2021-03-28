@@ -67,6 +67,20 @@ class StringUtils {
         const result = value.match(regex)
         return result ? result.join('') : ''
     }
+
+    /**
+     * Elimina acentuação de texto
+     * @param value string de entrada
+     * @returns texto sem acentuação
+     */
+    removerSpecials = (value: string) => {
+        return value.replace(/[ÀÁÂÃÄÅ]/g,"A").replace(/[àáâãäå]/g,"a")
+            .replace(/[èéêë]/g,"e").replace(/[ÈÉÊË]/g,"E")
+            .replace(/[ìíîï]/g,"i").replace(/[ÌÍÎÏ]/g,"I")
+            .replace(/[òóôõö]/g,"o").replace(/[ÒÓÔÕÖ]/g,"O")
+            .replace(/[ùúûü]/g,"u").replace(/[ÙÚÛÜ]/g,"U")
+            .replace(/[Ç]/g,"C").replace(/[ç]/g,"c")
+    }
 }
 
 export default new StringUtils()

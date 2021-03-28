@@ -1,0 +1,87 @@
+.path-selector {
+    width: 80%;
+    background-image: var(--background-pattern);
+    overflow: hidden;
+}
+
+.path-selector  :first-child{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.path-selector h2:first-child {
+    font-size: x-large;
+    margin: 0;
+    margin-top: 1rem;
+}
+
+.path-selector .MuiChip-root.MuiAutocomplete-tag {
+    display: flex;
+    flex-direction: row;
+    background-image: url('../../assets/logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: left;
+    padding-left: 2rem;
+}
+
+.path-selector .MuiInputBase-root .MuiAutocomplete-endAdornment {
+    display: flex;
+    flex-direction: row;
+}
+
+.path-selector.MuiPaper-rounded {
+    border-radius: var(--paper-radius);
+}
+
+.path-selector--input-container {
+    width: 90%;
+}
+
+.path-selector--input-container--autocomplete {
+    margin-top: 1.5rem;
+}
+
+.path-selector--input-container--autocomplete  .MuiInputBase-root {
+    max-height: 35vh;
+    overflow-y: auto;
+    border: 1px solid black;
+    border-radius: var(--paper-radius);
+}
+
+.path-selector--input-container--autocomplete .MuiFormControl-root {
+    position: relative;
+}
+
+.path-selector--input-container--autocomplete .MuiFormLabel-root {
+    background: var(--background-pattern);
+    background-color: white;
+}
+
+.path-selector--input-container--autocomplete .MuiOutlinedInput-root {
+    position: initial;
+}
+
+.path-selector--input-container--autocomplete .MuiInputBase-root {
+    position: initial;
+}
+
+.path-selector--input-container--autocomplete .MuiAutocomplete-endAdornment {
+    position: absolute;
+    bottom: 0;
+    z-index: 99;
+}
+
+.path-selector--input-container--autocomplete .MuiFormLabel-root.Mui-focused,
+.path-selector--input-container--autocomplete .MuiOutlinedInput-notchedOutline {
+    display: none;
+}
+ 
+.path-selector--button-container {
+    width: 90%;
+    margin: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
