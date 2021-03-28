@@ -1,5 +1,5 @@
 import React from 'react'
-import CostInfo from '../../components/cost_info'
+import CostInfo from '../../components/cost/cost_info'
 import Header from '../../components/header'
 
 const Main: React.FC = () => {

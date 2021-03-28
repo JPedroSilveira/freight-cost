@@ -1,6 +1,9 @@
 import CostConstants from "../constants/CostConstants"
 import Cost from "../types/Cost"
 import DexieUtils from "../utils/DexieUtils"
+import StringUtils from "../utils/StringUtils"
+
+const DEFAULT_VALUE = 0
 
 class CostService {
     private table: Dexie.Table<Cost, number>
@@ -43,8 +46,53 @@ class CostService {
      */
     isValid = (entity: Cost) => {
         if (entity.value < 0) return [false, CostConstants.NEGATIVE_COST]
-
+        
         return [true, '']
+    }
+
+    /**
+     * Transforma o valor de custo em uma string formatada com o símbolo monetário
+     * @param entity Entidade de custo
+     * @returns string formatada
+     */
+    getStringValueWithCurrencySymbol = (entity?: Cost) => {
+        const value = entity ?  entity.value : DEFAULT_VALUE
+        return `R$ ${StringUtils.numberToMoneyString(value)}`
+    }
+
+    /**
+     * Transforma o valor de custo em uma string formatada utilizando ponto final como separador de decimais
+     * @param entity Entidade de custo
+     * @returns string formatada
+    */
+    getStringValueWithDot = (entity?: Cost) => {
+        const value = entity ?  entity.value : DEFAULT_VALUE
+        return this.numberToStringValueWithDot(value)
+    }
+
+    /**
+     * Adiciona uma máscara de valor monetário a uma string em formato numérico separada por ponto
+     * @param value String representando o valor monetário
+     * @returns string formadata
+     */
+    moneyMask = (value: string) => {
+        if (value === '') {
+            return '0.00'
+        } 
+
+        value = StringUtils.removeNonNumerical(value).substr(0, CostConstants.MAX_COST_LENGTH)
+
+        const integer = value.substr(0, value.length - 2)
+        const decimal =  value.substr(value.length - 2, value.length)
+        value =  `${integer}.${decimal}`
+        
+        const floatValue = parseFloat(value)
+        const formatedValue = this.numberToStringValueWithDot(floatValue)
+        return formatedValue
+    }
+    
+    private numberToStringValueWithDot = (value: number) => {
+        return StringUtils.numberToMoneyString(value).replace(/\./gi, '').replace(',','.')
     }
 }
 

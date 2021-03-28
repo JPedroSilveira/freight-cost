@@ -19,14 +19,14 @@ class StringUtils {
     }
 
     /**
-     * Transforma um número em uma string representando um valor em reais
+     * Transforma um número em uma string representando um valor monetário
      * @param value número
-     * @returns string formatada dee acordo com a moeda Real no Brasil
+     * @returns string formatada
      */
-    numberToReais = (value: number) => {
+    numberToMoneyString = (value: number) => {
         if (value < 0) value = 0
         const stringValue = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
-        return `R$ ${stringValue.substr(3, stringValue.length)}`
+        return stringValue.substr(3, stringValue.length)
     }
 
     /**
@@ -36,6 +36,37 @@ class StringUtils {
     isEmpty = (str?: string | null) => (
         str === undefined || str === null || str.length === 0 || str.replace(/ /gi, '').length === 0
     )
+
+    /**
+     * Remove espaços vazios
+     * @param value string de entrada
+     * @returns string sem espaços vazios
+     */
+    removeBlankSpace = (value: string) => {
+        return value.replace(/ /gi, '')
+    }
+
+    /**
+     * Remove uma substring de uma string maior
+     * @param value string base
+     * @param subtraing substring a ser removida
+     * @returns string base sem casos da substring
+     */
+    removeSubstring = (value: string, subtraing: string) => {
+        const regex = new RegExp(subtraing, 'gi')
+        return value.replace(regex, '')
+    }
+
+    /**
+     * Remove valores não numéricos ([0-9], remove '.', '-' e '+') 
+     * @param value string base
+     * @returns string resultado
+     */
+    removeNonNumerical = (value: string) => {
+        const regex = /([0-9])/g
+        const result = value.match(regex)
+        return result ? result.join('') : ''
+    }
 }
 
 export default new StringUtils()
