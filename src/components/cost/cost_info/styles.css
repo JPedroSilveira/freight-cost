@@ -34,7 +34,7 @@
     margin-left: 0.25rem;
 }
 
-.cost-info--box--button.MuiButtonBase-root {
+.cost-info .button {
     margin-left: 2rem;
     border-radius: 10px;
     padding: 0.5rem 2rem 0.5rem 2rem;
