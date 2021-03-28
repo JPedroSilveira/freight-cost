@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Main from './main'
 import {
     Switch,
@@ -6,8 +6,20 @@ import {
     Redirect
   } from "react-router-dom"
 import './styles.css'
+import { DataService } from '../services/'
+import { toast } from 'react-toastify'
+import AppConstants from '../constants/AppConstants'
 
 const App: React.FC = () => {
+    useEffect(() => {
+        const loadData = async () => {
+            const success = DataService.verifyUpdates()
+            if (!success) toast.error(AppConstants.ERROR_LOADING_DATA)
+        }
+
+        loadData()
+    }, [])
+
     return (
         <div className='app'>
             <Switch>

@@ -4,10 +4,18 @@ import DistanceVersion from '../../types/DistanceVersion'
 
 class DataService {
     /**
+     * Verifica atualização de informações
+     * @returns true em caso de sucesso e false em caso de erro
+     */
+    verifyUpdates = async (): Promise<boolean> => {
+        return this.verifyDistanceDataUpdate()
+    }
+
+    /**
      * Verifica e atualiza as informações de distância caso necessário
      * @returns true caso os dados estejam atualizados e false em caso de erro
      */
-    verifyDistanceDataUpdate = async (): Promise<boolean> => {
+    private verifyDistanceDataUpdate = async (): Promise<boolean> => {
         const currentVersion = await DistanceVersionService.get()
 
         if (currentVersion === false) return false
