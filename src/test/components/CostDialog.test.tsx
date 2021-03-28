@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import CostDialog from '../../components/cost/cost_dialog'
 import CostConstants from '../../constants/CostConstants'
 import { CostService } from '../../services'
