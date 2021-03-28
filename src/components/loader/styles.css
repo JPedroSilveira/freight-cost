@@ -1,0 +1,39 @@
+.loader {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.loader-image-container {
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.loader-image-container>img {
+    height: calc(100% - 0.5rem);
+    width: auto;
+    animation-name: loader-rotation;
+    animation-timing-function: linear;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    fill: red im !important;
+}
+
+.loader-image-container>img svg{
+    fill: red;
+}
+
+@keyframes loader-rotation {
+    from {
+        transform: rotate3d(0,0,1,0deg);
+    }
+    to {
+        transform: rotate3d(0,0,1,360deg);
+    }
+}
