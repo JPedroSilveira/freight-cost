@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ServiceWorkerRegister from './service_worker/ServiceWorkerRegister'
+import ServiceWorkerRegister from './serviceWorkerRegistration'
 import App from './app'
 import isMobile from 'is-mobile'
 import {  BrowserRouter as Router } from 'react-router-dom'
@@ -37,4 +37,4 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-ServiceWorkerRegister.unregister()
+ServiceWorkerRegister.register()

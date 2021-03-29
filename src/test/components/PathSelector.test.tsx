@@ -21,17 +21,10 @@ test('title is present', () => {
     expect(element).toBeInTheDocument()
 })
 
-test('input label is present', () => {
-    render(<PathSelector cityService={cityService} onCalcPath={() => {}} />)
-
-    const element = screen.getByLabelText(CityConstants.CITIES_SELECT_LABEL)
-    expect(element).toBeInTheDocument()
-})
-
 test('button is present', () => {
     render(<PathSelector cityService={cityService} onCalcPath={() => {}} />)
-
-    const element = screen.getByText(CityConstants.CALC_BUTTON_TEXT)
+    const regex = new RegExp(CityConstants.CALC_BUTTON_TEXT, 'gi')
+    const element = screen.getByText(regex)
     expect(element).toBeInTheDocument()
 })
 

@@ -10,6 +10,7 @@
 }
 
 .result-dialog--content--paths {
+    max-height: 40vh;
     padding: 0 8px;
     padding-bottom: 1rem;
     height: 50%;
@@ -18,10 +19,19 @@
     border-radius: var(--paper-radius);
 }
 
+.result-dialog .loader-image-container img {
+    width: 40%;
+    height: auto;
+}
+
 .result-dialog--content--result-data {
     padding: 0 8px;
     font-size: larger;
     font-weight: bold;
+}
+
+.mobile .result-dialog--content--result-data {
+    font-size: medium;
 }
 
 .result-dialog>.MuiDialog-container>.MuiPaper-root{

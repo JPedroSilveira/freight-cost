@@ -1,6 +1,5 @@
-import { clientsClaim } from 'workbox-core'
 import { ExpirationPlugin } from 'workbox-expiration'
-import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching'
+import { createHandlerBoundToURL } from 'workbox-precaching'
 import { registerRoute } from 'workbox-routing'
 import { StaleWhileRevalidate } from 'workbox-strategies'
 
@@ -8,11 +7,7 @@ class CacheServiceWorker {
   private FILE_EXTENSION_REGEX = new RegExp('/[^/?]+\\.[^/]+$')
   private FILE_EXTENSION_TO_CACHE = ['png', 'svg']
 
-  registerCache = (scope: ServiceWorkerGlobalScope) => {
-    clientsClaim()
-
-    precacheAndRoute(scope.__WB_MANIFEST)
-        
+  registerCache = (scope: ServiceWorkerGlobalScope) => {        
     registerRoute(
       ({ request, url }: { request: Request; url: URL }) => {
         if (request.mode !== 'navigate') return false

@@ -122,8 +122,8 @@ const ResultDialog: React.FC<{
                             <div className="result-dialog--content--paths">
                                 <ul>
                                     {shortPaths.map((item, index) => (
-                                        <li>
-                                            <ShortPathComponent key={index} shortPath={item} />
+                                        <li key={index}>
+                                            <ShortPathComponent shortPath={item} />
                                         </li>
                                     ))}
                                 </ul>
@@ -133,7 +133,7 @@ const ResultDialog: React.FC<{
                                 <p>{`Custo: ${StringUtils.numberToMoneyStringWithSymbol(shortPath.cost)}`}</p>
                             : path &&
                                 <>
-                                    <p>{`Distância total: ${StringUtils.numberToMoneyString(path.totalDistance)} km`}</p>
+                                    <p>{`Distância total: ${path.totalDistance} km`}</p>
                                     <p>{`Custo total: ${StringUtils.numberToMoneyStringWithSymbol(path.totalCost)}`}</p>
                                     <p>{`Combustível consumido: ${StringUtils.numberToMoneyString(path.totalFuel)} L`}</p>
                                     <p>{`Total de dias: ${path.totalDays}`}</p>

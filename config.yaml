@@ -53,7 +53,7 @@ metadata:
     traefik.ingress.kubernetes.io/redirect-entry-point: https
 spec:
   rules:
-    - host: custofrete.tk
+    - host: custodofrete.tk
       http:
         paths:
           - path: /
@@ -65,5 +65,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-      - custofrete.tk
+      - custodofrete.tk
       secretName: dinoapp-tls

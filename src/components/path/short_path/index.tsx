@@ -1,9 +1,8 @@
 import React from 'react'
 import ShortPathType from '../../../types/ShortPath'
 import LogoSVG from '../../../assets/logo.svg' 
-import StringUtils from '../../../utils/StringUtils'
-import './styles.css'
 import AppConstants from '../../../constants/AppConstants'
+import './styles.css'
 
 const ShortPath: React.FC<{
     shortPath: ShortPathType
@@ -18,7 +17,7 @@ const ShortPath: React.FC<{
             <div className='short-path--data'>
                 <p>De: {shortPath.originCity}</p>
                 <p>Para: {shortPath.destinyCity}</p>
-                <p>Distância: {StringUtils.numberToMoneyString(shortPath.distance)}km</p>
+                <p>Distância: {shortPath.distance} km</p>
             </div>
         </div>
     )

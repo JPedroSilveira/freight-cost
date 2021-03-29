@@ -8,7 +8,7 @@ RUN apt-get update -y && \
     apt-get update -y && \
     apt-get install nodejs -y && \
     npm install --global yarn && \
-    yarn install --production --network-timeout 10000000 && \
+    yarn install --network-timeout 10000000 && \
     yarn build
 
 FROM nginx:stable-alpine
