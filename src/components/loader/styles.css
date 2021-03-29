@@ -18,6 +18,7 @@
 
 .loader-image-container>img {
     height: 70%;
+    max-height: 5rem;;
     width: auto;
     animation-name: loader-rotation;
     animation-timing-function: linear;
