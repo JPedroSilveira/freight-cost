@@ -25,6 +25,10 @@ const CostDialog: React.FC<{
     const inputRef = useRef<HTMLInputElement>()
 
     useEffect(() => {
+      setValue(CostService.moneyMask(CostService.getStringValueWithDot(cost)))
+    }, [cost])
+
+    useEffect(() => {
       if (inputRef.current) {
         if (currentSelection === null) {
           inputRef.current.selectionStart = value.length
