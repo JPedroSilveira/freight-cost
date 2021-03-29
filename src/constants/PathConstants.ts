@@ -5,6 +5,7 @@ class PathConstants {
     WITHOUT_PATH = 'Não há um caminho que percorra a rota especificada'
     NO_DATA = 'Sem rota'
     TOO_SHORT_PATH = 'O caminho deve possuir pelo menos duas cidades'
+    NO_COST = 'Custo não definido'
 }
 
 export default new PathConstants()

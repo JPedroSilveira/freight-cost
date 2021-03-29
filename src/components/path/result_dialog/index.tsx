@@ -46,7 +46,7 @@ const ResultDialog: React.FC<{
                         handleCitiesEmpty()
                     }
                 } else {
-                    handleLoadDataError()
+                    handleLoadCostError()
                 }
             }
     
@@ -66,8 +66,8 @@ const ResultDialog: React.FC<{
                 return false
             }
 
-            let handleLoadDataError = () => {
-                toast.error(AppConstants.ERROR_LOADING_DATA)
+            let handleLoadCostError = () => {
+                toast.error(PathConstants.NO_COST)
                 onClose()
             }
 
@@ -97,7 +97,7 @@ const ResultDialog: React.FC<{
             return () => {
                 setPathResult = () => {}
                 setShortPathResult = () => {}
-                handleLoadDataError = () => {}
+                handleLoadCostError = () => {}
             }
         } else {
             setPath(undefined)
