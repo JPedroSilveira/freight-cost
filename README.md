@@ -1,6 +1,7 @@
+Projeto para iniciação em testes com ReactJS.
+
 # Custo do Frete 🚚
 Cálculo do custo de frete por caminhão baseado na distância de duas cidades brasileiras.
-Projeto para iniciação em testes com ReactJS.
 
 ## PWA
 #### Progressive Web Application (PWA) é uma metodologia de desenvolvimento de software que utiliza de tecnologias comuns da web (HTML, CSS e JS) para desenvolver aplicativos que funcionam em qualquer dispositivo com acesso a navegadores web padrões. O objetivo é preencher a lacuna de experiência de usuário entre aplicações nativas e aplicações web.
