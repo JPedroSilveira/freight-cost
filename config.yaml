@@ -11,7 +11,7 @@ metadata:
   labels:
     app: custofrete
 spec:
-  replicas: 4
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: custofrete
-          image: petcompufrgs/custofrete:staging
+          image: petcompufrgs/custodofrete:staging
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -49,7 +49,7 @@ metadata:
   namespace: custofrete
   annotations:
     kubernetes.io/ingress.class: "traefik"
-    cert-manager.io/cluster-issuer: letsencrypt-production
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/redirect-entry-point: https
 spec:
   rules:
@@ -66,4 +66,4 @@ spec:
   tls:
     - hosts:
       - custodofrete.tk
-      secretName: dinoapp-tls
+      secretName: custofrete-tls
